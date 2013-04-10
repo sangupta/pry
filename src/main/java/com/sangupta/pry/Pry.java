@@ -1,7 +1,7 @@
 /**
  *
- * pry - Prying what powers top million sites 
- * Copyright (c) 2012, Sandeep Gupta
+ * pry - Prying what powers the Internet 
+ * Copyright (c) 2012-2013, Sandeep Gupta
  * 
  * http://www.sangupta/projects/pry
  * 
@@ -21,17 +21,15 @@
 
 package com.sangupta.pry;
 
-import java.io.File;
-
-import com.sangupta.jerry.util.WebUtils;
-import com.sangupta.jerry.util.ZipUtils;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * This program will analyze (amongst) the top 1 million sites to find
  * what powers these sites, from the server, language, scripts, tools and
  * various frameworks.
  * 
- * The extracted information is then published as HTML pages using Google
+ * The extracted information is then published as HTML pages using interactive
  * charts for inspection.
  * 
  * @author sangupta
@@ -40,24 +38,21 @@ import com.sangupta.jerry.util.ZipUtils;
 public class Pry {
 	
 	private static final String ALEXA_TOP_1M_SITES = "http://s3.amazonaws.com/alexa-static/top-1m.csv.zip";
-
+	
 	/**
 	 * The main entry point to this program.
 	 * 
 	 * @param args
 	 */
-	public static void main(String[] args) throws Exception {
-		// download the alexa top 1M zip
-		File tempZip = WebUtils.downloadToTempFile(ALEXA_TOP_1M_SITES);
-
-		// extract the sites list and find out top 500
-		File csvFile = ZipUtils.readFileFromZip(tempZip, "top-1m.csv");
+	public static void main(String[] args) {
+		// initialize Spring context
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		
-		// fetch the home page of each of these sites and store them into the database
+		// get the service that does the work
+		PryService service = context.getBean(PryService.class);
 		
-		// run the analyzers
-		
-		// prepare the charts
+		// run the service
+		service.startPrying(ALEXA_TOP_1M_SITES, 10);
 	}
-
+	
 }

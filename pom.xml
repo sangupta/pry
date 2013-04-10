@@ -1,25 +1,113 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-  <groupId>com.sangupta</groupId>
-  <artifactId>pry</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>jar</packaging>
+	<modelVersion>4.0.0</modelVersion>
 
-  <name>pry</name>
-  <url>http://maven.apache.org</url>
+	<groupId>com.sangupta</groupId>
+	<artifactId>pry</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
+	<name>pry</name>
+	<description>Pry</description>
+	<url>http://www.sangupta.com/projects/pry</url>
+	<inceptionYear>2012</inceptionYear>
 
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+		<maven.build.timestamp.format>yyyyMMddHHmm</maven.build.timestamp.format>
+		<build.timestamp>${maven.build.timestamp}</build.timestamp>
+		<build.number />
+	</properties>
+
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+
+	<scm>
+		<connection>scm:git:git://github.com/sangupta/pry.git</connection>
+		<developerConnection>scm:git:http://git@github.com/sangupta/pry.git</developerConnection>
+		<url>https://github.com/sangupta/pry</url>
+	</scm>
+
+	<prerequisites>
+		<maven>3.0.0</maven>
+	</prerequisites>
+
+	<developers>
+		<developer>
+			<id>sangupta</id>
+			<name>Sandeep Gupta</name>
+			<email>sandy.pec@gmail.com</email>
+			<url>http://www.sangupta.com</url>
+		</developer>
+	</developers>
+
+	<dependencies>
+		<!-- for unit testing the code -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.10</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<!-- for actual working -->
+		<dependency>
+			<groupId>com.sangupta</groupId>
+			<artifactId>jerry</artifactId>
+			<version>0.3.3-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-mongodb</artifactId>
+			<version>1.2.0.RELEASE</version>
+		</dependency>
+	</dependencies>
+	
+	<build>
+		<finalName>pry</finalName>
+		<plugins>
+			<!-- Set compiler level for JDK 1.6 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+			
+			<!-- Create an all run JAR -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<mainClass>com.sangupta.pry.Pry</mainClass>
+						</manifest>
+					</archive>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+				</configuration>
+	            <executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+		        </executions>
+			</plugin>
+		</plugins>
+	</build>
+	
 </project>
