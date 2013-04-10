@@ -26,5 +26,9 @@
 	<bean name="pryService" class="com.sangupta.pry.DefaultPryServiceImpl" />
 	
 	<bean name="siteService" class="com.sangupta.pry.site.MongoDBSiteServiceImpl" />
+	
+	<bean name="siteDownloadService" class="com.sangupta.pry.download.HttpSiteDownloadService" />
+	
+	<bean name="downloadedSiteService" class="com.sangupta.pry.sitedata.MongoDBSiteDataServiceImpl" />
 
 </beans>

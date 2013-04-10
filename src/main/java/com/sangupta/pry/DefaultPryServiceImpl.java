@@ -77,7 +77,7 @@ public class DefaultPryServiceImpl implements PryService {
 			
 			@Override
 			public void runWithArguments(Site site) {
-				// TODO: 
+				siteDownloadService.downloadSite(site);
 			}
 		};
 		

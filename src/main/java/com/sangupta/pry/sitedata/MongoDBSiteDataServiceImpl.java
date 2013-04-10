@@ -19,7 +19,7 @@
  * 
  */
 
-package com.sangupta.pry.downloadedsite;
+package com.sangupta.pry.sitedata;
 
 import com.sangupta.jerry.mongodb.MongoTemplateBasicOperations;
 
@@ -28,6 +28,6 @@ import com.sangupta.jerry.mongodb.MongoTemplateBasicOperations;
  * @author sangupta
  *
  */
-public class MongoDBDownloadedSiteServiceImpl extends MongoTemplateBasicOperations<DownloadedSite, String> implements DownloadedSiteService {
+public class MongoDBSiteDataServiceImpl extends MongoTemplateBasicOperations<SiteData, String> implements SiteDataService {
 
 }

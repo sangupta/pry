@@ -19,7 +19,7 @@
  * 
  */
 
-package com.sangupta.pry.downloadedsite;
+package com.sangupta.pry.sitedata;
 
 import com.sangupta.jerry.db.DatabaseBasicOperationsService;
 
@@ -28,6 +28,6 @@ import com.sangupta.jerry.db.DatabaseBasicOperationsService;
  * @author sangupta
  *
  */
-public interface DownloadedSiteService extends DatabaseBasicOperationsService<DownloadedSite, String> {
+public interface SiteDataService extends DatabaseBasicOperationsService<SiteData, String> {
 
 }

@@ -19,7 +19,7 @@
  * 
  */
 
-package com.sangupta.pry.downloadedsite;
+package com.sangupta.pry.sitedata;
 
 import java.util.Map;
 
@@ -36,7 +36,7 @@ import com.sangupta.pry.site.Site;
  * @author sangupta
  *
  */
-public class DownloadedSite {
+public class SiteData {
 	
 	/**
 	 * This value is same as {@link Site#getSiteID()}.
@@ -47,9 +47,26 @@ public class DownloadedSite {
 	
 	private String url;
 	
+	private boolean crawled;
+	
+	private long lastCrawled;
+	
 	private String contents;
 
 	private Map<String, String> headers;
+	
+	public void markCrawled() {
+		this.crawled = true;
+		this.lastCrawled = System.currentTimeMillis(); 
+	}
+	
+	public SiteData() {
+		
+	}
+	
+	public SiteData(String url) {
+		this.url = url;
+	}
 	
 	// usual accessors follow
 
@@ -108,5 +125,33 @@ public class DownloadedSite {
 	public void setHeaders(Map<String, String> headers) {
 		this.headers = headers;
 	}
-	
+
+	/**
+	 * @return the crawled
+	 */
+	public boolean isCrawled() {
+		return crawled;
+	}
+
+	/**
+	 * @param crawled the crawled to set
+	 */
+	public void setCrawled(boolean crawled) {
+		this.crawled = crawled;
+	}
+
+	/**
+	 * @return the lastCrawled
+	 */
+	public long getLastCrawled() {
+		return lastCrawled;
+	}
+
+	/**
+	 * @param lastCrawled the lastCrawled to set
+	 */
+	public void setLastCrawled(long lastCrawled) {
+		this.lastCrawled = lastCrawled;
+	}
+
 }
