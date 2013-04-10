@@ -24,6 +24,8 @@ package com.sangupta.pry;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.sangupta.pry.service.PryService;
+
 /**
  * This program will analyze (amongst) the top 1 million sites to find
  * what powers these sites, from the server, language, scripts, tools and
@@ -52,7 +54,8 @@ public class Pry {
 		PryService service = context.getBean(PryService.class);
 		
 		// run the service
-		service.startPrying(ALEXA_TOP_1M_SITES, 10);
+		PryingOptions options = new PryingOptions(false, false, true, true, true, true);
+		service.startPrying(ALEXA_TOP_1M_SITES, 10, options);
 	}
 	
 }

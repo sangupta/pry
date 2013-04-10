@@ -64,8 +64,9 @@ public class SiteData {
 		
 	}
 	
-	public SiteData(String url) {
-		this.url = url;
+	public SiteData(Site site) {
+		this.siteID = site.getSiteID();
+		this.url = site.getUrl();
 	}
 	
 	// usual accessors follow

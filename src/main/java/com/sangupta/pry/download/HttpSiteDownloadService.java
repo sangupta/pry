@@ -25,6 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.sangupta.jerry.http.WebInvoker;
 import com.sangupta.jerry.http.WebResponse;
+import com.sangupta.jerry.util.UriUtils;
 import com.sangupta.pry.site.Site;
 import com.sangupta.pry.sitedata.MongoDBSiteDataServiceImpl;
 import com.sangupta.pry.sitedata.SiteData;
@@ -51,10 +52,11 @@ public class HttpSiteDownloadService implements SiteDownloadService {
 		// initialize data object, as needed
 		SiteData siteData = this.siteDataService.get(site.getSiteID());
 		if(siteData == null) {
-			siteData = new SiteData(url);
+			siteData = new SiteData(site);
 		}
 		
 		WebResponse response = WebInvoker.getResponse(url);
+		System.out.println("Downloaded site data: " + url + "...");
 		siteData.markCrawled();
 		if(response == null) {
 			// this is an error
@@ -68,6 +70,22 @@ public class HttpSiteDownloadService implements SiteDownloadService {
 		}
 		
 		this.siteDataService.addOrUpdate(siteData);
+	}
+	
+	// Usual accessors follow
+
+	/**
+	 * @return the siteDataService
+	 */
+	public MongoDBSiteDataServiceImpl getSiteDataService() {
+		return siteDataService;
+	}
+
+	/**
+	 * @param siteDataService the siteDataService to set
+	 */
+	public void setSiteDataService(MongoDBSiteDataServiceImpl siteDataService) {
+		this.siteDataService = siteDataService;
 	}
 
 }

@@ -19,15 +19,19 @@
  * 
  */
 
-package com.sangupta.pry;
+package com.sangupta.pry.analysis;
+
+import java.util.List;
+
+import com.sangupta.pry.site.Site;
 
 /**
  * 
  * @author sangupta
  *
  */
-public interface PryService {
-	
-	public void startPrying(final String url, final int numSitesToAnalyze);
+public interface AnalyzerService {
+
+	public Analysis analyze(List<Site> sites);
 
 }

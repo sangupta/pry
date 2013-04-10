@@ -23,12 +23,24 @@
 		<constructor-arg index="1" value="pry" />
 	</bean>
 	
-	<bean name="pryService" class="com.sangupta.pry.DefaultPryServiceImpl" />
+	<bean name="pryService" class="com.sangupta.pry.service.DefaultPryServiceImpl" />
 	
 	<bean name="siteService" class="com.sangupta.pry.site.MongoDBSiteServiceImpl" />
+	
+	<bean name="chartService" class="com.sangupta.pry.chart.HtmlChartServiceImpl" />
+	
+	<bean name="siteDataService" class="com.sangupta.pry.sitedata.MongoDBSiteDataServiceImpl" />
 	
 	<bean name="siteDownloadService" class="com.sangupta.pry.download.HttpSiteDownloadService" />
 	
 	<bean name="downloadedSiteService" class="com.sangupta.pry.sitedata.MongoDBSiteDataServiceImpl" />
+	
+	<bean name="analyzerService" class="com.sangupta.pry.analysis.MultiAnalyzerServiceImpl" >
+		<property name="analyzers">
+			<list>
+				<bean class="com.sangupta.pry.analyzers.ResponseSizeAnalyzer" />
+			</list>
+		</property>
+	</bean>
 
 </beans>
