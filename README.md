@@ -3,6 +3,10 @@ pry
 
 `pry` helps see what the internet is built upon. Crawling the top sites to find out which technologies are being used.
 
+Aim
+---
+To help web developers choose the right technologies that the world is using and moving to.
+
 License
 -------
   
